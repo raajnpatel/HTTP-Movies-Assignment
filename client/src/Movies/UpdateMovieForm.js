@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+
 const initialMovie = {
     id: "",
     title: "",
@@ -8,18 +9,26 @@ const initialMovie = {
     stars: []
 };
 
-const UpdateForm = () => {
+const UpdateForm = props => {
     const [movie, setMovie] = useState(initialMovie);
 
-    const handlechange = e => {
+    const handleChange = e => {
+        let value = e.target.value;
+        if (e.target.name === "id") {
+            value = parseInt(value, 10);
+        } else if (e.target.name === "metascore") {
+            value = parseInt(value, 10);
+        }
         setMovie({
             ...movie,
-            [e.target.name]: e.target.value
+            [e.target.name]: value
         });
     };
 
     const handleSubmit = e => {
         e.preventDefault();
+        setMovie((movie.stars = movie.stars.split(" ")));
+        setMovie(initialMovie);
         console.log(movie);
     };
 
@@ -32,28 +41,35 @@ const UpdateForm = () => {
                     name="id"
                     placeholder="Enter the ID"
                     value={movie.id}
-                    onChange={handlechange}
+                    onChange={handleChange}
                 />
                 <input
                     type="text"
                     name="title"
                     placeholder="Enter the Title"
                     value={movie.title}
-                    onChange={handlechange}
+                    onChange={handleChange}
                 />
                 <input
                     type="text"
                     name="director"
                     placeholder="Enter the Director"
                     value={movie.director}
-                    onChange={handlechange}
+                    onChange={handleChange}
+                />
+                <input
+                    type="number"
+                    name="metascore"
+                    placeholder="Enter the Metascore"
+                    value={movie.metascore}
+                    onChange={handleChange}
                 />
                 <input
                     type="text"
                     name="stars"
                     placeholder="Enter the Cast Stars"
                     value={movie.stars}
-                    onChange={handlechange}
+                    onChange={handleChange}
                 />
                 <button>Edit the Movie</button>
             </form>
