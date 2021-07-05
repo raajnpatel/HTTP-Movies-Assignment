@@ -75,3 +75,12 @@ body {
   color: red;
   text-align: center;
 }
+
+edit-button {
+  position: absolute;
+  top: 25px;
+  right: 100px;
+  border: 1px solid grey;
+  padding: 7px 12px;
+  background-color: lightseagreen;
+}
